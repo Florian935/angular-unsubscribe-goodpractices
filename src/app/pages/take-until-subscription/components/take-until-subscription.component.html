@@ -1,0 +1,6 @@
+<p>Open browser console (F12 in Google Chrome). You will see that a value is emitted every second for each 3 subscriptions.</p>
+<p>If you switch to "takeUntil operator destroyer" or "takeUntil operator no unsubscribe", the emitted value is stopped because we unsubscribe.</p>
+<p>Disavantage to use subscription variables is that for each subscription, we need a variable and we need to manually destroy them. In this case, we have duplicate code.</p>
+<p>In other hand, a new emitter start in console because the "take-until-no-unsubscribe" subscribe to the emitter.</p>
+
+

@@ -1,1 +1,5 @@
-<p>take-until works!</p>
+<p>Open browser console (F12 in Google Chrome). You will see that a value is emitted every second for each 3 subscriptions.</p>
+<p>If you switch to "takeUntil operator subscription" or "takeUntil operator (without unsubscribe)", the emitted value is stopped because we unsubscribe.</p>
+<p>The advantage of use destroyer subject is that we avoid duplicate code and we don't need to unsubcribe manually to each subscription.</p>
+<p>In other hand, a new emitter start in console because the "take-until-no-unsubscribe" subscribe to the emitter.</p>
+
