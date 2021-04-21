@@ -1,0 +1,7 @@
+<p>Here, we simulate an async HTTP request. Because the nature of HTTP request is async, we don't know when the response is received.</p>
+<p>We simulate an HTTP request to show how to unsubscribe directly when the data are received from the response without wait to destroy the component.</p>
+<p>How to accomplish that ? My purpose is to use the takeUntil operator. We declare a destroyer variable of type Subject.
+    When the data are received from the http request, we call the next() and complete() method of the destroyer Subject. By
+    calling the complete() function, the takeUntil operator is triggered and has for effect to close the subscription.
+</p>
+<p>To see the subscription which is opened and then closed when the data are received, open the browser console (F12 in Google Chrome). We see that the subscription is open before the payload is received and after the payload is received, the subscription is closed.</p>

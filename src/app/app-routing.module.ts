@@ -19,6 +19,12 @@ const routes: Routes = [
         loadChildren: () =>
             import('./pages/take-until-subscription/take-until-subscription.module')
             .then( m => m.TakeUntilSubscriptionModule)
+    },
+    {
+        path: 'take-until-destroyer-without-ng-on-destroy',
+        loadChildren: () =>
+            import('./pages/take-until-destroyer-without-ng-on-destroy/take-until-destroyer-without-ng-on-destroy.module')
+            .then( m => m.TakeUntilDestroyerWithoutNgOnDestroyModule)
     }
 ];
 
