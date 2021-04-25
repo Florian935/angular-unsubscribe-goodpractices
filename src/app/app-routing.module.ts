@@ -25,6 +25,12 @@ const routes: Routes = [
         loadChildren: () =>
             import('./pages/take-until-destroyer-without-ng-on-destroy/take-until-destroyer-without-ng-on-destroy.module')
             .then( m => m.TakeUntilDestroyerWithoutNgOnDestroyModule)
+    },
+    {
+        path: 'subsink-unsubscriber',
+        loadChildren: () =>
+            import('./pages/subsink-unsubscriber/subsink-unsubscriber.module')
+                .then( m => m.SubsinkUnsubscriberModule)
     }
 ];
 

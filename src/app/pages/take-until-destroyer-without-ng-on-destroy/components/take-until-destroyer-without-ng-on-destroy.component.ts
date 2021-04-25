@@ -10,7 +10,7 @@ import { Subject, Subscription } from 'rxjs';
 })
 export class TakeUntilDestroyerWithoutNgOnDestroyComponent implements OnInit {
     private subscription: Subscription = new Subscription();
-    private destroyer$: Subject<boolean> = new Subject<boolean>();
+    private unsubscriber$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private _observableEmitterService: ObservableEmitterService) { }
 
@@ -23,7 +23,7 @@ export class TakeUntilDestroyerWithoutNgOnDestroyComponent implements OnInit {
             console.log('Simulated http request started !');
 
             this.subscription = this._observableEmitterService.sourceEmitter$
-                .pipe(takeUntil(this.destroyer$))
+                .pipe(takeUntil(this.unsubscriber$))
                 .subscribe( ( ticker: number ) => {
                     console.log(`Simulated response payload received: ${++ticker}`);
                     console.log(`===============> Subscription is open: ${!this.subscription.closed}`)
@@ -35,7 +35,7 @@ export class TakeUntilDestroyerWithoutNgOnDestroyComponent implements OnInit {
     }
 
     private processDestroyer(): void {
-        this.destroyer$.next(true);
-        this.destroyer$.complete();
+        this.unsubscriber$.next(true);
+        this.unsubscriber$.complete();
     }
 }

@@ -4,11 +4,8 @@ import { interval } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class ObservableEmitterService implements OnDestroy {
+export class ObservableEmitterService {
     sourceEmitter$ = interval(1000);
 
     constructor() { }
-    ngOnDestroy(): void {
-        console.log('toto');
-    }
 }

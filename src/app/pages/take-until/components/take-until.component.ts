@@ -9,32 +9,32 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./take-until.component.scss']
 })
 export class TakeUntilComponent implements OnInit, OnDestroy {
-    private destroyer$: Subject<boolean> = new Subject<boolean>();
+    private unsubscriber$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private _observableEmitterService: ObservableEmitterService) { }
 
     ngOnInit(): void {
         this._observableEmitterService.sourceEmitter$
-            .pipe(takeUntil(this.destroyer$))
+            .pipe(takeUntil(this.unsubscriber$))
             .subscribe( ( ticker: number ) =>
                 console.log(`Ticker from takeUntil destroyer 1 component: ${ticker}`)
             );
 
         this._observableEmitterService.sourceEmitter$
-            .pipe(takeUntil(this.destroyer$))
+            .pipe(takeUntil(this.unsubscriber$))
             .subscribe( ( ticker: number ) =>
                 console.log(`Ticker from takeUntil destroyer 2 component: ${ticker}`)
             );
 
         this._observableEmitterService.sourceEmitter$
-            .pipe(takeUntil(this.destroyer$))
+            .pipe(takeUntil(this.unsubscriber$))
             .subscribe( ( ticker: number ) =>
                 console.log(`Ticker from takeUntil destroyer 3 component: ${ticker}`)
             );
     }
 
     ngOnDestroy(): void {
-        this.destroyer$.next(true);
-        this.destroyer$.complete();
+        this.unsubscriber$.next(true);
+        this.unsubscriber$.complete();
     }
 }
