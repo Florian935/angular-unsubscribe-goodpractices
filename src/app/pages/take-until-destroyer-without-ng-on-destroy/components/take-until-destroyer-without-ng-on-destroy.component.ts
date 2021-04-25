@@ -1,6 +1,6 @@
 import { takeUntil } from 'rxjs/operators';
 import { ObservableEmitterService } from './../../services/observable-emitter.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 
 @Component({
@@ -22,15 +22,14 @@ export class TakeUntilDestroyerWithoutNgOnDestroyComponent implements OnInit {
         setTimeout( () => {
             console.log('Simulated http request started !');
 
-            this.subscription = this._observableEmitterService.sourceEmitter$
-                .pipe(takeUntil(this.unsubscriber$))
-                .subscribe( ( ticker: number ) => {
-                    console.log(`Simulated response payload received: ${++ticker}`);
-                    console.log(`===============> Subscription is open: ${!this.subscription.closed}`)
-                    this.processDestroyer();
-                    console.log(`===============> After call destroyer object to finish the subscription with the simulated http request ====> Subscription is open: ${!this.subscription.closed}`)
-                }
-            );
+            this.subscription = this._observableEmitterService.sourceEmitter$.pipe(
+                takeUntil(this.unsubscriber$))
+                    .subscribe( ( ticker: number ) => {
+                        console.log(`Simulated response payload received: ${++ticker}`);
+                        console.log(`===============> Subscription is open: ${!this.subscription.closed}`)
+                        this.processDestroyer();
+                        console.log(`===============> After call destroyer object to finish the subscription with the simulated http request ====> Subscription is open: ${!this.subscription.closed}`)
+                    });
         }, 2000);
     }
 
