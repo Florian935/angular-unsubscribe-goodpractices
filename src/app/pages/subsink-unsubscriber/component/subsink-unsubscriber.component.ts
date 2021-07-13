@@ -19,7 +19,7 @@ export class SubsinkUnsubscriberComponent extends UnsubscribeOnDestroyAdapter im
         // This allow to externalize the unsubscription in the component
         this.subscriptions.add(
             this._observableEmitterService.sourceEmitter$.subscribe((ticker: number) =>
-                    console.log(`Subscription 1: ${ticker}`)),
+                console.log(`Subscription 1: ${ticker}`)),
             this._observableEmitterService.sourceEmitter$.subscribe((ticker: number) =>
                 console.log(`Subscription 2: ${ticker}`))
         );
